@@ -15,6 +15,8 @@
  */
 package org.primefaces.model.chart;
 
+import org.primefaces.util.EscapeUtils;
+
 import java.io.IOException;
 import java.io.Writer;
 
