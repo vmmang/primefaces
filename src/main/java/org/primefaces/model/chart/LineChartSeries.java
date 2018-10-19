@@ -15,8 +15,6 @@
  */
 package org.primefaces.model.chart;
 
-import org.primefaces.util.EscapeUtils;
-
 import java.io.IOException;
 import java.io.Writer;
 
@@ -29,12 +27,57 @@ public class LineChartSeries extends ChartSeries {
     private double fillAlpha = 1;
     private boolean smoothLine = false;
     private boolean disableStack;
+    private String linePattern;
+    private String lineWidth;
+    private String color;
+    private String negativeColor;
+    private boolean fillToZero;
 
     public LineChartSeries() {
     }
 
     public LineChartSeries(String title) {
         super(title);
+    }
+
+    public String getLinePattern() {
+        return linePattern;
+    }
+
+    public void setLinePattern(String aLinePattern) {
+        linePattern = aLinePattern;
+    }
+
+    public String getLineWidth() {
+        return lineWidth;
+    }
+
+    public void setLineWidth(String aLineWidth) {
+        lineWidth = aLineWidth;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String aColor) {
+        color = aColor;
+    }
+
+    public void setFillToZero(boolean aFillToZero) {
+        fillToZero = aFillToZero;
+    }
+
+    public boolean isFillToZero() {
+        return fillToZero;
+    }
+
+    public String getNegativeColor() {
+        return negativeColor;
+    }
+
+    public void setNegativeColor(String aNegativeColor) {
+        negativeColor = aNegativeColor;
     }
 
     public String getMarkerStyle() {
@@ -119,6 +162,21 @@ public class LineChartSeries extends ChartSeries {
             writer.write(",fillAlpha:" + this.getFillAlpha());
         }
 
+        if (linePattern != null) {
+            writer.write(",linePattern: '" + linePattern + "'");
+        }
+        if (lineWidth != null) {
+            writer.write(",lineWidth: '" + lineWidth + "'");
+        }
+        if (color != null) {
+            writer.write(",color: '" + color + "'");
+        }
+        if (negativeColor != null) {
+            writer.write(",negativeColor: '" + negativeColor + "'");
+        }
+
+        writer.write(",fillToZero: " + fillToZero);
+
         writer.write(",showLine:" + this.isShowLine());
         writer.write(",markerOptions:{show:" + this.isShowMarker() + ", style:'" + this.getMarkerStyle() + "'}");
         if (smoothLine) {
@@ -128,3 +186,4 @@ public class LineChartSeries extends ChartSeries {
     }
 
 }
+
