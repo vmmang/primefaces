@@ -82,7 +82,8 @@ public class RequestContext {
             if (facesContext != null) {
                 facesContext.getAttributes().remove(INSTANCE_KEY);
             }
-        } else {
+        }
+        else {
             facesContext.getAttributes().put(INSTANCE_KEY, context);
         }
     }
@@ -183,11 +184,13 @@ public class RequestContext {
 
         if (request instanceof HttpServletRequest) {
             return ((HttpServletRequest) request).isSecure();
-        } else {
+        }
+        else {
             try {
                 Method method = request.getClass().getDeclaredMethod("isSecure", new Class[0]);
                 return (Boolean) method.invoke(request, (Object[]) null);
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 return false;
             }
         }
@@ -210,7 +213,8 @@ public class RequestContext {
             String param = context.getExternalContext().getInitParameter(Constants.ContextParams.DIRECTION);
             if (param == null) {
                 rtl = false;
-            } else {
+            }
+            else {
                 ELContext elContext = context.getELContext();
                 ExpressionFactory expressionFactory = context.getApplication().getExpressionFactory();
                 ValueExpression expression = expressionFactory.createValueExpression(elContext, param, String.class);
